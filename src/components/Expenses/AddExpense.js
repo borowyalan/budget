@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { firestore } from "../firebase";
+import { firestore } from "../../firebase";
 
 export default function AddExpense({ id }) {
 	const [expenseName, setName] = useState("");

@@ -3,7 +3,7 @@ import "./App.css";
 
 import { collectIdsAndDocs } from "./util";
 import { firestore } from "./firebase";
-import Expenses from "./components/Expenses";
+import Expenses from "./components/Expenses/Expenses";
 
 function App() {
 	const [expensesState, setExpenses] = useState([]);

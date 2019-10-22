@@ -1,6 +1,6 @@
 import React from "react";
 import propTypes from "prop-types";
-import { firestore } from "../firebase";
+import { firestore } from "../../firebase";
 
 const Expense = ({ id, name, value, stars }) => {
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
