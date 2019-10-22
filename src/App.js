@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+
+import { collectIdsAndDocs } from "./util";
+import { firestore } from "./firebase";
+import Expenses from "./components/Expenses";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [expensesState, setExpenses] = useState([]);
+
+	
+	useEffect(() => {
+		let unsubscribe = null;
+		(async function subscribeToData() {
+			unsubscribe = firestore.collection("budget").onSnapshot(snapshot => {
+				const expenses = snapshot.docs.map(collectIdsAndDocs);
+				setExpenses(expenses);
+			});
+		})();
+		return () => {
+			unsubscribe();
+		}
+	}, []);
+
+	return (
+		<div className='App'>
+			<Expenses expenses={expensesState} />
+		</div>
+	);
 }
 
 export default App;
