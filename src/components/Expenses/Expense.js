@@ -2,18 +2,19 @@ import React from "react";
 import propTypes from "prop-types";
 import { firestore } from "../../firebase";
 
-const Expense = ({ id, name, value, stars }) => {
+import "./Expense.scss"
+
+const Expense = ({ id, name, value, username, timestamp}) => {
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
 	const remove = () => expenseRef.delete();
-	const incrementStars = () => expenseRef.update({ stars: stars + 1 });
 
 	return (
-		<article className='Post'>
-			<div className='Post--content'>
+		<article className='Expense'>
+			<div className='Expense--content'>
 				<h3>{name}</h3>
 				<div>{value}</div>
-				<span>stars: {stars}</span>
-				<div onClick={incrementStars}>increment stars</div>
+				<div>{username}</div>
+				<div>{timestamp}</div>
 				<div onClick={remove}>delete</div>
 			</div>
 		</article>

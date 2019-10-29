@@ -1,5 +1,6 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/auth'
 
   const firebaseConfig = {
     apiKey: "AIzaSyCG6D2s_3cXSpvknnu7JjHXYeKyO09C3Sw",
@@ -17,5 +18,10 @@ import 'firebase/firestore'
 	//debugging
 	window.firebase = firebase;
 
-	export const firestore = firebase.firestore(); 
+  export const firestore = firebase.firestore(); 
+
+  export const auth = firebase.auth();
+  export const provider = new firebase.auth.EmailAuthProvider()
+  // export const signInWithEmail = auth.signInWithEmailAndPassword();
+
 	export default firebase;

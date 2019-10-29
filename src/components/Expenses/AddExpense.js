@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { firestore } from "../../firebase";
 
-export default function AddExpense({ id }) {
+export default function AddExpense({ id, username }) {
 	const [expenseName, setName] = useState("");
 	const [expenseValue, setValue] = useState("");
 
@@ -10,11 +10,14 @@ export default function AddExpense({ id }) {
 
 		let name = expenseName;
 		let value = Number(expenseValue);
+		let timestamp = Date.now()
 
 		const expense = {
 			name,
 			value,
-			stars: 0
+			username,
+			stars: 0,
+			timestamp
 		};
 		firestore.collection("budget").add(expense);
 
