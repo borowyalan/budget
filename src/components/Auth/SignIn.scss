@@ -1,0 +1,33 @@
+.SignIn--container {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+
+	h2 {
+		font-size: 8rem;
+		margin: 1rem;
+		color: rgb(118, 118, 182);
+	}
+
+	.SignIn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		input {
+			padding: 1rem;
+			margin: 0.5rem;
+			width: 300px;
+
+			box-sizing: border-box;
+			border-radius: 8px;
+			border: 2px solid rgb(179, 177, 177);
+
+			font-size: 1.2rem;
+
+			&[type="submit"] {
+				font-size: 1.3rem;
+			}
+		}
+	}
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { collectIdsAndDocs } from "./util";
-import "./App.css";
+import "./App.scss";
 
 import { firestore } from "./firebase";
 import Expenses from "./components/Expenses/Expenses";

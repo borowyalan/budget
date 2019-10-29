@@ -5,7 +5,7 @@ import SignIn from "./SignIn";
 
 const Authentication = ({ user, loading }) => {
 	if (loading) return null;
-	return <div>{user ? <CurrentUser {...user} /> : <SignIn />}</div>;
+	return <>{user ? <CurrentUser {...user} /> : <SignIn />}</>;
 };
 
 export default Authentication;
