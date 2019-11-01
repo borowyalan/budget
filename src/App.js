@@ -3,7 +3,7 @@ import { collectIdsAndDocs } from "./util";
 import "./App.scss";
 
 import { firestore } from "./firebase";
-import Expenses from "./components/Expenses/Expenses";
+import ExpensesScreen from "./components/ExpensesScreen/Expenses";
 
 import { auth } from "./firebase";
 import Authentication from "./components/Auth/Authentication";
@@ -44,7 +44,7 @@ function App() {
 		<div className='App'>
 			<Authentication user={userAuth} />
 			{userAuth ? (
-				<Expenses username={username} expenses={expensesState} />
+				<ExpensesScreen username={username} expenses={expensesState} />
 			) : (
 				""
 			)}
