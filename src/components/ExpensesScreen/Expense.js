@@ -4,7 +4,9 @@ import { firestore } from "../../firebase";
 
 import "./Expense.scss"
 
-const Expense = ({ id, name, value, username, timestamp}) => {
+const Expense = ({ id, name, value, displayName, timestamp}) => {
+	console.log(id);
+	
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
 	const remove = () => expenseRef.delete();
 
@@ -13,7 +15,7 @@ const Expense = ({ id, name, value, username, timestamp}) => {
 			<div className='Expense--content'>
 				<h3>{name}</h3>
 				<div>{value}</div>
-				<div>{username}</div>
+				<div>{displayName}</div>
 				<div>{timestamp}</div>
 				<div onClick={remove}>delete</div>
 			</div>

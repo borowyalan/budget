@@ -1,7 +1,7 @@
 import React from "react";
 import { auth } from "../../firebase";
 
-const CurrentUser = ({ email, children }) => {
+const CurrentUser = ({ displayName, email, children }) => {
 	const handleSignOut = () => auth.signOut();
 
 	return (
@@ -9,6 +9,7 @@ const CurrentUser = ({ email, children }) => {
 			<div className='CurrentUser--profile'>
 				<div className='CurrentUser--information'>
 					<p className='email'>{email}</p>
+					<div className="displayName">{displayName}</div>
 				</div>
 			</div>
 			<div>

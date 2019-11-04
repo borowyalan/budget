@@ -5,14 +5,12 @@ import "./App.scss";
 import { firestore } from "./firebase";
 import ExpensesScreen from "./components/ExpensesScreen/Expenses";
 
-import { auth } from "./firebase";
+import { auth, getUserDocument } from "./firebase";
 import Authentication from "./components/Auth/Authentication";
-import usernames from "./components/Auth/usernames";
 
 function App() {
 	const [expensesState, setExpenses] = useState([]);
-	const [userAuth, setUser] = useState("");
-	const [username, setUsername] = useState("d");
+	const [user, setUser] = useState("");
 
 	useEffect(() => {
 		let unsubscribeFromFirestore = null;
@@ -20,18 +18,15 @@ function App() {
 		(async function subscribeToFirestore() {
 			unsubscribeFromFirestore = await firestore
 				.collection("budget")
-				// .where('username', '==', 'Karol')
 				.onSnapshot(snapshot => {
 					const expenses = snapshot.docs.map(collectIdsAndDocs);
 					setExpenses(expenses);
 				});
 		})();
-		(async function subscribeToAuth() {
-			auth.onAuthStateChanged(user => {
-				if (user) {
-					setUsername(usernames[user.email]);
-				}
-				setUser(user);
+		(function subscribeToAuth() {
+			auth.onAuthStateChanged(async userAuth => {
+				const user = await getUserDocument(userAuth)
+				setUser(user)
 			});
 		})();
 
@@ -42,12 +37,8 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Authentication user={userAuth} />
-			{userAuth ? (
-				<ExpensesScreen username={username} expenses={expensesState} />
-			) : (
-				""
-			)}
+			<Authentication user={user} />
+			{user ? <ExpensesScreen user={user} expenses={expensesState} /> : ""}
 		</div>
 	);
 }

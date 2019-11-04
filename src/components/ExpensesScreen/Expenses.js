@@ -2,14 +2,13 @@ import React from "react";
 import Expense from "./Expense";
 import AddExpense from "./AddExpense";
 
-import "./Expenses.scss"
+import "./Expenses.scss";
 
-const Expenses = ({ expenses, username }) => {
-	console.log(username);
-
+const Expenses = ({ expenses, user }) => {
+	
 	return (
 		<section>
-			<AddExpense username={username} />
+			<AddExpense {...user} />
 			<div className='Expenses--container'>
 				{expenses.map(expense => (
 					<Expense {...expense} key={expense.id} />
