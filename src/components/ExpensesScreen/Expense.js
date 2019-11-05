@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import propTypes from "prop-types";
 import { firestore } from "../../firebase";
 
 import "./Expense.scss";
+import { UserContext } from "../../providers/UserProvider";
 
-const Expense = ({ id, name, value, displayName, timestamp, uid, user }) => {
+const Expense = ({ id, name, value, displayName, timestamp, author }) => {
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
-	const remove = () => {
-		user.uid === uid
-			? expenseRef.delete()
-			: console.warn("You can only remove your tasks");
-	};
+	const remove = () => expenseRef.delete();
+
+	const currentUser = useContext(UserContext);
 
 	return (
 		<article className='Expense'>
@@ -19,7 +18,11 @@ const Expense = ({ id, name, value, displayName, timestamp, uid, user }) => {
 				<div>{value}</div>
 				<div>{displayName}</div>
 				<div>{timestamp}</div>
-				<div onClick={remove}>delete</div>
+				{currentUser.uid === author.uid ? (
+					<div onClick={remove}>delete</div>
+				) : (
+					""
+				)}
 			</div>
 		</article>
 	);

@@ -13,7 +13,7 @@ const Expenses = ({ user }) => {
 			<AddExpense {...user} />
 			<div className='Expenses--container'>
 				{expenses.map(expense => (
-					<Expense {...expense} uid={user.uid} key={expense.id} />
+					<Expense {...expense} currentUserUID={user.uid} key={expense.id} />
 				))}
 			</div>
 		</section>

@@ -16,7 +16,7 @@ export default function AddExpense({ displayName, uid }) {
 			name,
 			value,
 			displayName,
-			user: {
+			author: {
 				uid
 			},
 			timestamp
