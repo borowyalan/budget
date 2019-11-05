@@ -2,13 +2,15 @@ import React from "react";
 import propTypes from "prop-types";
 import { firestore } from "../../firebase";
 
-import "./Expense.scss"
+import "./Expense.scss";
 
-const Expense = ({ id, name, value, displayName, timestamp}) => {
-	console.log(id);
-	
+const Expense = ({ id, name, value, displayName, timestamp, uid, user }) => {
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
-	const remove = () => expenseRef.delete();
+	const remove = () => {
+		user.uid === uid
+			? expenseRef.delete()
+			: console.warn("You can only remove your tasks");
+	};
 
 	return (
 		<article className='Expense'>
