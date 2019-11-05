@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { auth } from "../../firebase";
+import { UserContext } from "../../providers/UserProvider";
 
-const CurrentUser = ({ displayName, email, children }) => {
+const CurrentUser = props => {
 	const handleSignOut = () => auth.signOut();
+
+	const user = useContext(UserContext);
+	const { displayName, email } = user;
 
 	return (
 		<section className='CurrentUser'>
 			<div className='CurrentUser--profile'>
 				<div className='CurrentUser--information'>
 					<p className='email'>{email}</p>
-					<div className="displayName">{displayName}</div>
+					<div className='displayName'>{displayName}</div>
 				</div>
 			</div>
 			<div>
-				<div>{children}</div>
+				<div>{props.children}</div>
 				<button onClick={handleSignOut}>Sign Out</button>
 			</div>
 		</section>

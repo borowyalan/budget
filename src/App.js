@@ -1,32 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import "./App.scss";
 
 import Expenses from "./components/ExpensesScreen/Expenses";
-
-import { auth, getUserDocument } from "./firebase";
 import Authentication from "./components/Auth/Authentication";
+import { UserContext } from "./providers/UserProvider";
 
 function App() {
-	const [user, setUser] = useState("");
-
-	useEffect(() => {
-		let unsubscribeFromAuth = null;
-
-		(function subscribeToAuth() {
-			unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-				const user = await getUserDocument(userAuth);
-				setUser(user);
-			});
-		})();
-
-		return () => {
-			unsubscribeFromAuth();
-		};
-	}, []);
+	const user = useContext(UserContext);
 
 	return (
 		<div className='App'>
-			<Authentication user={user} />
+			<Authentication />
 			{user ? <Expenses user={user} /> : ""}
 		</div>
 	);

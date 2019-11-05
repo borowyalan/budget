@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import ExpensesProvider from "./providers/ExpensesProvider"
+import UserProvider from "./providers/UserProvider";
 
 ReactDOM.render(
-	<ExpensesProvider>
-		<App />
-	</ExpensesProvider>,
+	<UserProvider>
+		<ExpensesProvider>
+			<App />
+		</ExpensesProvider>
+	</UserProvider>,
 	document.getElementById("root")
 );
 
