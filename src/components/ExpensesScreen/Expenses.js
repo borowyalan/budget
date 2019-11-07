@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import Expense from "./Expense";
-import AddExpense from "./AddExpense";
 import { ExpensesContext } from "../../providers/ExpensesProvider";
 
 import "./Expenses.scss";
@@ -10,7 +9,7 @@ const Expenses = ({ user }) => {
 
 	return (
 		<section>
-			<AddExpense {...user} />
+			{/* <AddExpense {...user} /> */}
 			<div className='Expenses--container'>
 				{expenses.map(expense => (
 					<Expense {...expense} currentUserUID={user.uid} key={expense.id} />

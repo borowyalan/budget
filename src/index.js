@@ -5,11 +5,15 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import ExpensesProvider from "./providers/ExpensesProvider"
 import UserProvider from "./providers/UserProvider";
+import ModalStateProvider from "./providers/ModalStateProvider";
+
 
 ReactDOM.render(
 	<UserProvider>
 		<ExpensesProvider>
-			<App />
+			<ModalStateProvider>
+				<App />
+			</ModalStateProvider>
 		</ExpensesProvider>
 	</UserProvider>,
 	document.getElementById("root")
