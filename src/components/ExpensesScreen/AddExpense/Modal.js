@@ -7,6 +7,8 @@ import './ModalStyles.scss'
 
 import styled from "styled-components/macro";
 
+ReactModal.setAppElement('#root')
+
 export default function Modal() {
 	const currentUser = useContext(UserContext);
 	const { modalVisibility, setModalVisibility } = useContext(ModalStateContext);
