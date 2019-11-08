@@ -1,55 +1,17 @@
-import React, { useState, useContext } from "react";
-import { firestore } from "../../../firebase";
+import React, { useContext } from "react";
 import ReactModal from "react-modal";
-import { UserContext } from "../../../providers/UserProvider";
 import { ModalStateContext } from "../../../providers/ModalStateProvider";
-import './ModalStyles.scss'
+import Form from './Form'
+import "./ModalStyles.scss";
 
-import styled from "styled-components/macro";
-
-ReactModal.setAppElement('#root')
+ReactModal.setAppElement("#root");
 
 export default function Modal() {
-	const currentUser = useContext(UserContext);
 	const { modalVisibility, setModalVisibility } = useContext(ModalStateContext);
 
-	const [expenseName, setName] = useState("");
-	const [expenseValue, setValue] = useState("");
-
-	const { displayName, uid } = currentUser;
-
-	const handleSubmit = event => {
-		event.preventDefault();
-
-		let name = expenseName;
-		let value = Number(expenseValue);
-		let timestamp = Date.now();
-
-		const expense = {
-			name,
-			value,
-			displayName,
-			author: {
-				uid
-			},
-			timestamp
-		};
-		firestore.collection("budget").add(expense);
-
-		setName("");
-		setValue("");
-		setModalVisibility(false);
-	};
-
-	const handleChange = event => {
-		event.target.name === "name"
-			? setName(event.target.value)
-			: setValue(event.target.value);
-	};
-
 	return (
-		<ModalWrapper>
-			<StyledModal
+
+			<ReactModal
 				isOpen={modalVisibility}
 				shouldCloseOnOverlayClick={true}
 				onRequestClose={() => {
@@ -77,59 +39,7 @@ export default function Modal() {
 					}
 				}}
 			>
-				<StyledForm onSubmit={handleSubmit} className='AddExpenset'>
-					<StyledInput
-						type='text'
-						name='name'
-						placeholder='Nazwa'
-						value={expenseName}
-						onChange={handleChange}
-					/>
-					<StyledInput
-						type='text'
-						name='value'
-						placeholder='Cena'
-						value={expenseValue}
-						onChange={handleChange}
-					/>
-					<StyledInputButton
-						className='create'
-						type='submit'
-						value='Create Expense'
-					/>
-				</StyledForm>
-			</StyledModal>
-		</ModalWrapper>
+				<Form/>
+			</ReactModal>
 	);
 }
-	const ModalWrapper = styled.div`
-		.ReactModelOverlay.ReactModalOverlay-open {
-			background-color: red;
-		}
-	`;
-
-	const StyledModal = styled(ReactModal)`
-		.ReactModalOverlay-open {
-			background-color: red;
-		}
-	`;
-
-const StyledForm = styled.form`
-	display: flex;
-	flex-direction: column;
-`;
-
-const StyledInput = styled.input`
-	font-size: 2rem;
-	padding: 1rem;
-	padding-bottom: 0;
-	border: none;
-	border-bottom: 1px solid gray;
-`;
-
-const StyledInputButton = styled.input`
-	margin-top: 1.5rem;
-	padding: 1rem;
-	border-radius: 1rem;
-	font-size: 1.5rem;
-`;
