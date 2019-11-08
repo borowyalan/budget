@@ -19,14 +19,7 @@ const Expense = ({ id, name, value, displayName, timestamp, author }) => {
 		>
 			<div className='Expense--content'>
 				<h3>{name}</h3>
-				<div>{value}</div>
-				<div>{displayName}</div>
-				{/* <div>{timestamp}</div> */}
-				{/* {currentUser.uid === author.uid ? (
-					<div onClick={remove}>delete</div>
-				) : (
-					""
-				)} */}
+				<h4>{value} zł</h4>
 			</div>
 		</StyledExpense>
 	);
@@ -54,8 +47,8 @@ const StyledExpense = styled.article`
 	/* border: 1.5px solid translucent; */
 	border-radius: 8px;
 
-	h3 {
-		margin-top: 0;
+	h3, h4 {
+		margin: 5px 0;
 	}
 `;
 export default Expense;
