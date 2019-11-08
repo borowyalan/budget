@@ -13,6 +13,7 @@ export default function ExpensesProvider(props) {
 		(async function subscribeToFirestore() {
 			unsubscribeFromFirestore = await firestore
 				.collection("budget")
+				.orderBy("timestamp", "desc")
 				.onSnapshot(snapshot => {
 					const expenses = snapshot.docs.map(collectIdsAndDocs);
 					setExpenses(expenses);
