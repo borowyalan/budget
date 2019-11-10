@@ -6,15 +6,17 @@ import * as serviceWorker from "./serviceWorker";
 import ExpensesProvider from "./providers/ExpensesProvider"
 import UserProvider from "./providers/UserProvider";
 import ModalStateProvider from "./providers/ModalStateProvider";
-
+import UsersAmountsProvider from "./providers/UsersAmountsProvider";
 
 ReactDOM.render(
 	<UserProvider>
-		<ExpensesProvider>
-			<ModalStateProvider>
-				<App />
-			</ModalStateProvider>
-		</ExpensesProvider>
+		<UsersAmountsProvider>
+			<ExpensesProvider>
+				<ModalStateProvider>
+					<App />
+				</ModalStateProvider>
+			</ExpensesProvider>
+		</UsersAmountsProvider>
 	</UserProvider>,
 	document.getElementById("root")
 );

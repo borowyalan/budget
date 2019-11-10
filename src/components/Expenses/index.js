@@ -1,21 +1,24 @@
 import React, { useContext } from "react";
 import Expense from "./Expense";
+import AddExpense from "./AddExpense";
+import DisplaySumOfExpenses from "./DisplaySumOfExpenses";
 import { ExpensesContext } from "../../providers/ExpensesProvider";
 
 import "./Expenses.scss";
 
-const Expenses = ({ user }) => {
+const Index = ({ user }) => {
 	const expenses = useContext(ExpensesContext);
 
 	return (
 		<section>
-			{/* <AddExpense {...user} /> */}
+			<DisplaySumOfExpenses userAmount={user.userAmount}></DisplaySumOfExpenses>
 			<div className='Expenses--container'>
 				{expenses.map(expense => (
 					<Expense {...expense} currentUserUID={user.uid} key={expense.id} />
 				))}
 			</div>
+			<AddExpense/>
 		</section>
 	);
 };
-export default Expenses;
+export default Index;
