@@ -5,7 +5,7 @@ import { UserContext } from "../../providers/UserProvider";
 
 import styled from "styled-components/macro";
 
-const Expense = ({ id, name, value, displayName, timestamp, author }) => {
+const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
 	const remove = () => expenseRef.delete();
 
@@ -19,7 +19,8 @@ const Expense = ({ id, name, value, displayName, timestamp, author }) => {
 		>
 			<div className='Expense--content'>
 				<h3>{name}</h3>
-				<h4>{value} zł</h4>
+				<h4>{amount} zł</h4>
+				<div onClick={remove}>delete</div>
 			</div>
 		</StyledExpense>
 	);
@@ -27,7 +28,7 @@ const Expense = ({ id, name, value, displayName, timestamp, author }) => {
 
 Expense.propTypes = {
 	name: propTypes.string.isRequired,
-	value: propTypes.number.isRequired
+	amount: propTypes.number.isRequired
 };
 
 const StyledExpense = styled.article`
@@ -46,6 +47,10 @@ const StyledExpense = styled.article`
 
 	/* border: 1.5px solid translucent; */
 	border-radius: 8px;
+
+	h3 {
+		text-transform: capitalize;
+	}
 
 	h3, h4 {
 		margin: 5px 0;

@@ -31,7 +31,7 @@ export default function Modal() {
 						flexDirection: "column",
 						padding: "0.5rem",
 						margin: "5rem auto",
-						height: "14rem",
+						minHeight: "14rem",
 						width: "80vw",
 						borderRadius: "1rem",
 						border: "4px solid rgba(255,178,0,1)",
