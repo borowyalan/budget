@@ -10,8 +10,7 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Authentication />
-			{user ? <Expenses user={user} /> : ""}
+			{user ? <Expenses user={user} /> : <Authentication />}
 		</div>
 	);
 }

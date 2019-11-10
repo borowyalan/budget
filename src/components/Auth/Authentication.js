@@ -10,7 +10,11 @@ const Authentication = () => {
 	console.log(user);
 	
 
-	return <>{user ? '' : <SignIn />}</>;
+	return (
+		<>
+			<SignIn />}
+		</>
+		);
 };
 
 export default Authentication;
