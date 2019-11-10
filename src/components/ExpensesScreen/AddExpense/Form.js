@@ -15,6 +15,9 @@ export default function Form() {
 
 	const handleSubmit = formValues => {
 		let { name, amount } = formValues;
+		amount = amount.replace(/,{1}/, '.')
+		amount = parseFloat(amount)
+		
 		let timestamp = Date.now();
 
 		const expense = {
