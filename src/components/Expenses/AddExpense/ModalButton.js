@@ -1,17 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components/macro";
-import { ModalStateContext } from "../../../providers/ModalStateProvider";
-import logo from './plus_sign.svg'
+import logo from "./plus_sign.svg";
 
-export default function ModalButton(p) {
-	const { modalVisibility, setModalVisibility } = useContext(ModalStateContext);
-
+export default function ModalButton({ modalVisibility, setModalVisibility }) {
 	return (
 		<PopupContainer
 			modalVisibility={modalVisibility}
 			onClick={() => setModalVisibility(true)}
 		>
-			<img src={logo} alt="plus sign"/>
+			<img src={logo} alt='plus sign' />
 		</PopupContainer>
 	);
 }

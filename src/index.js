@@ -3,18 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import ExpensesProvider from "./providers/ExpensesProvider"
+import ExpensesProvider from "./providers/ExpensesProvider";
 import UserProvider from "./providers/UserProvider";
-import ModalStateProvider from "./providers/ModalStateProvider";
 import UsersAmountsProvider from "./providers/UsersAmountsProvider";
 
 ReactDOM.render(
 	<UserProvider>
 		<UsersAmountsProvider>
 			<ExpensesProvider>
-				<ModalStateProvider>
-					<App />
-				</ModalStateProvider>
+				<App />
 			</ExpensesProvider>
 		</UsersAmountsProvider>
 	</UserProvider>,

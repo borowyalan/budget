@@ -1,23 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { firestore } from "../../../firebase";
 import { UserContext } from "../../../providers/UserProvider";
-import { ModalStateContext } from "../../../providers/ModalStateProvider";
 
 import * as Formik from "formik";
 import * as Yup from "yup";
 
 import styled from "styled-components/macro";
 
-export default function Form() {
-	const { setModalVisibility } = useContext(ModalStateContext);
+export default function Form({ setModalVisibility }) {
 	const currentUser = useContext(UserContext);
 	const { displayName, uid } = currentUser;
 
 	const handleSubmit = formValues => {
 		let { name, amount } = formValues;
-		amount = amount.replace(/,{1}/, '.')
-		amount = parseFloat(amount)
-		
+		amount = amount.replace(/,{1}/, ".");
+		amount = parseFloat(amount);
+
 		let timestamp = Date.now();
 
 		const expense = {
@@ -38,7 +36,7 @@ export default function Form() {
 			.max(15, "Must be no longer than 15 characters")
 			.required("Required"),
 		amount: Yup.string()
-		// match one, positive float number separated with either comma or 
+			// match one, positive float number separated with either comma or
 			.matches(
 				/^(?:\d+|\d{1,3}(?:,\d{3})+)(?:(\.|,)\d+)?$/,
 				"Amount must be a number"
