@@ -10,14 +10,8 @@ const CurrentUser = props => {
 
 	return (
 		<section className='CurrentUser'>
-			<div className='CurrentUser--profile'>
-				<div className='CurrentUser--information'>
-					<p className='email'>{email}</p>
-					<div className='displayName'>{displayName}</div>
-				</div>
-			</div>
-			<div>
-				<div>{props.children}</div>
+			<div className='CurrentUser--information'>
+				<span className='displayNamew'>{displayName}</span>
 				<button onClick={handleSignOut}>Sign Out</button>
 			</div>
 		</section>

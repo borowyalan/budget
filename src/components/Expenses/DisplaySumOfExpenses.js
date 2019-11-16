@@ -6,14 +6,14 @@ const DisplaySumOfExpenses = () => {
 	const usersAmounts = useContext(UsersAmountsContext);
 
 	return (
-		<div style={{ height: "50px", padding: "1rem" }}>
+		<section style={{ height: "50px", padding: "1rem" }}>
 			<div>
 				{usersAmounts[0].displayName}, {usersAmounts[0].userAmount}
 			</div>
 			<div>
 				{usersAmounts[1].displayName}, {usersAmounts[1].userAmount}
 			</div>
-		</div>
+		</section>
 	);
 };
 

@@ -17,11 +17,11 @@ const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
 			offset={"50px"}
 			className='Expense'
 		>
-			<div className='Expense--content'>
+			<section className='Expense--content'>
 				<h3>{name}</h3>
 				<h4>{amount} zł</h4>
-				<div onClick={remove}>delete</div>
-			</div>
+				{currentUser.uid === author.uid ? <div onClick={remove}>delete</div> : ''}
+			</section>
 		</StyledExpense>
 	);
 };
