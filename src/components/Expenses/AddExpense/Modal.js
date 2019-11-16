@@ -4,14 +4,10 @@ import "./ModalStyles.scss";
 
 ReactModal.setAppElement("#root");
 
-export default function Modal({
-	children,
-	modalVisibility,
-	setModalVisibility
-}) {
+export default function Modal({ children, setModalVisibility }) {
 	return (
 		<ReactModal
-			isOpen={modalVisibility}
+			isOpen={true}
 			shouldCloseOnOverlayClick={true}
 			onRequestClose={() => {
 				setModalVisibility(false);

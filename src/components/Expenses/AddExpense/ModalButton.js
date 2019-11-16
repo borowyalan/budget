@@ -2,12 +2,9 @@ import React from "react";
 import styled from "styled-components/macro";
 import logo from "./plus_sign.svg";
 
-export default function ModalButton({ modalVisibility, setModalVisibility }) {
+export default function ModalButton({ setModalVisibility }) {
 	return (
-		<PopupContainer
-			modalVisibility={modalVisibility}
-			onClick={() => setModalVisibility(true)}
-		>
+		<PopupContainer onClick={() => setModalVisibility(true)}>
 			<img src={logo} alt='plus sign' />
 		</PopupContainer>
 	);
@@ -21,9 +18,6 @@ const PopupContainer = styled.div`
 	position: fixed;
 	bottom: 7vh;
 	right: 10vw;
-
-	visibility: ${props =>
-		props.modalVisibility === true ? "hidden" : "visible"};
 
 	height: 10vh;
 	width: 10vh;

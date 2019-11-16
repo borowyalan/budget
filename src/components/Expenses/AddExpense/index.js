@@ -8,16 +8,13 @@ export default function Index() {
 
 	return (
 		<div>
-			<Modal
-				setModalVisibility={setModalVisibility}
-				modalVisibility={modalVisibility}
-			>
-				<Form setModalVisibility={setModalVisibility} />
-			</Modal>
-			<ModalButton
-				modalVisibility={modalVisibility}
-				setModalVisibility={setModalVisibility}
-			/>
+			{modalVisibility ? (
+				<Modal setModalVisibility={setModalVisibility}>
+					<Form setModalVisibility={setModalVisibility} />
+				</Modal>
+			) : (
+				<ModalButton setModalVisibility={setModalVisibility} />
+			)}
 		</div>
 	);
 }
