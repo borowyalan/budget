@@ -36,7 +36,7 @@ export default function Form({ setModalVisibility }) {
 			.max(15, "Must be no longer than 15 characters")
 			.required("Required"),
 		amount: Yup.string()
-			// match one, positive float number separated with either comma or
+			// match one, positive float number separated with either a comma or a dot
 			.matches(
 				/^(?:\d+|\d{1,3}(?:,\d{3})+)(?:(\.|,)\d+)?$/,
 				"Amount must be a number"
