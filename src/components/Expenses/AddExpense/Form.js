@@ -60,23 +60,28 @@ export default function Form({ setModalVisibility }) {
 		>
 			{formik => (
 				<StyledForm className='AddExpenset'>
-					<label htmlFor='name' style={{ visibility: "hidden" }}>
-						Name of the task
-					</label>
-					<StyledField type='text' name='name' placeholder='Nazwa' />
-					<Formik.ErrorMessage
-						name='name'
-						render={msg => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-					/>
-
-					<label htmlFor='amount' style={{ visibility: "hidden" }}>
-						Name of the task
-					</label>
-					<StyledField type='text' name='amount' placeholder='Cena' />
-					<Formik.ErrorMessage
-						name='amount'
-						render={msg => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-					/>
+					<StyledFieldsContainer>
+						<label htmlFor='name' style={{ visibility: "hidden", height: "0px" }}>
+							Name of the task
+						</label>
+						<StyledField type='text' name='name' placeholder='Nazwa' />
+						<Formik.ErrorMessage
+							name='name'
+							render={msg => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+						/>
+	
+						<label
+							htmlFor='amount'
+							style={{ visibility: "hidden", height: "0px" }}
+						>
+							Name of the task
+						</label>
+						<StyledField type='text' name='amount' placeholder='Cena' />
+						<Formik.ErrorMessage
+							name='amount'
+							render={msg => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+						/>
+					</StyledFieldsContainer>
 
 					<StyledInputButton
 						className='create'
@@ -92,12 +97,21 @@ export default function Form({ setModalVisibility }) {
 const StyledForm = styled(Formik.Form)`
 	display: flex;
 	flex-direction: column;
+	justify-content: space-around;
+	min-height: 12rem; 
 `;
 
+const StyledFieldsContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+
+	min-height: 50%;
+`
+
 const StyledField = styled(Formik.Field)`
-	font-size: 2rem;
-	padding: 1rem;
-	padding-bottom: 0;
+	font-size: 1.5rem;
+	padding: 0 1rem 0.2rem 1rem;
 	border: none;
 	border-bottom: 1px solid gray;
 `;
@@ -108,8 +122,10 @@ const StyledErrorMessage = styled.div`
 `;
 
 const StyledInputButton = styled.input`
-	margin-top: 1.5rem;
+	margin: 0 auto;	
+	/* margin-top: 1.5rem; */
 	padding: 1rem;
-	border-radius: 1rem;
-	font-size: 1.5rem;
+	width: 60%;
+	font-weight: bold;
+	font-size: 1rem;
 `;
