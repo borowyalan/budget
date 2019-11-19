@@ -6,15 +6,19 @@ import * as serviceWorker from "./serviceWorker";
 import ExpensesProvider from "./providers/ExpensesProvider";
 import UserProvider from "./providers/UserProvider";
 import UsersAmountsProvider from "./providers/UsersAmountsProvider";
+import { BrowserRouter as Router } from "react-router-dom";
+
 
 ReactDOM.render(
-	<UserProvider>
-		<UsersAmountsProvider>
-			<ExpensesProvider>
-				<App />
-			</ExpensesProvider>
-		</UsersAmountsProvider>
-	</UserProvider>,
+	<Router>
+		<UserProvider>
+			<UsersAmountsProvider>
+				<ExpensesProvider>
+					<App />
+				</ExpensesProvider>
+			</UsersAmountsProvider>
+		</UserProvider>
+	</Router>,
 	document.getElementById("root")
 );
 

@@ -7,12 +7,10 @@ import { UserContext } from "../../providers/UserProvider";
 const Authentication = () => {
 
 	const user = useContext(UserContext)
-	console.log(user);
-	
 
 	return (
 		<>
-			<SignIn />}
+			<SignIn />
 		</>
 		);
 };
