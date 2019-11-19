@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import propTypes from "prop-types";
 import { firestore } from "../../firebase";
 import { UserContext } from "../../providers/UserProvider";
+import DeleteExpense from "./DeleteExpense";
 
 import styled from "styled-components/macro";
 
 const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
-	const remove = () => expenseRef.delete();
+
+	const remove = () => {};
 
 	const currentUser = useContext(UserContext);
 
@@ -20,7 +22,13 @@ const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
 			<section className='Expense--content'>
 				<h3>{name}</h3>
 				<h4>{amount} zł</h4>
-				{currentUser.uid === author.uid ? <div onClick={remove}>delete</div> : ''}
+				{currentUser.uid === author.uid ? (
+					<div onClick={remove}>
+						<DeleteExpense expenseRef={expenseRef}/>
+					</div>
+				) : (
+					""
+				)}
 			</section>
 		</StyledExpense>
 	);
@@ -52,7 +60,8 @@ const StyledExpense = styled.article`
 		text-transform: capitalize;
 	}
 
-	h3, h4 {
+	h3,
+	h4 {
 		margin: 5px 0;
 	}
 `;
