@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./App.scss";
 
 import Expenses from "./components/Expenses";
-import Authentication from "./components/Auth/Authentication";
+import Login from "./components/Auth/Login";
 import { UserContext } from "./providers/UserProvider";
 import { Switch, Route, Redirect } from "react-router-dom";
 
@@ -33,7 +33,7 @@ function App() {
 		<div className='App'>
 			<Switch>
 				<Route path='/login'>
-					{user === undefined ? <Authentication /> : ""}
+					{user === undefined ? <Login /> : ""}
 				</Route>
 				<PrivateRoute path='/'>
 					<Expenses user={user} />

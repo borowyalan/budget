@@ -6,7 +6,7 @@ import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
 import { ScaleLoader } from "react-spinners";
 import "./SignIn.scss";
 
-export function SignIn() {
+export function Login() {
 	const [form, setFormValues] = useState({
 		email: "",
 		password: ""
@@ -73,4 +73,4 @@ export function SignIn() {
 	);
 }
 
-export default SignIn;
+export default Login;
