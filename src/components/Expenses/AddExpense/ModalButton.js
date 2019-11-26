@@ -4,33 +4,32 @@ import logo from "./plus_sign.svg";
 
 export default function ModalButton({ setModalVisibility }) {
 	return (
-		<PopupContainer onClick={() => setModalVisibility(true)}>
-			<img src={logo} alt='plus sign' />
-		</PopupContainer>
+		<StyledPopupContainer onClick={() => setModalVisibility(true)}>
+			<StyledPlusSign src={logo} alt='plus sign' />
+		</StyledPopupContainer>
 	);
 }
 
-const PopupContainer = styled.div`
+const StyledPopupContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	position: fixed;
-	bottom: 7vh;
+	bottom: 3vh;
 	right: 10vw;
 
 	height: 10vh;
 	width: 10vh;
 
-	border: solid 4px rgba(255, 178, 0, 1);
+	border: solid 0.1px black;
 	border-radius: 2.5rem;
 	background-color: white;
 	font-size: 3rem;
+`;
 
-	z-index: 9000;
-
-	img {
-		width: 45%;
-		height: 45%;
-	}
+const StyledPlusSign = styled.img`
+	width: 45%;
+	height: 45%;
+	filter: invert(100%);
 `;

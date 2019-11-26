@@ -13,7 +13,7 @@ const Index = ({ user }) => {
 	return (
 		<section>
 			<DisplaySumOfExpenses userAmount={user.userAmount}></DisplaySumOfExpenses>
-			<CurrentUser/>
+			{/* <CurrentUser/> */}
 			<div className='Expenses--container'>
 				{expenses.map(expense => (
 					<Expense {...expense} currentUserUID={user.uid} key={expense.id} />

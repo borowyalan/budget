@@ -76,7 +76,7 @@ export default function Form({ setModalVisibility }) {
 						>
 							Name of the task
 						</label>
-						<StyledField type='text' name='amount' placeholder='Cena' />
+						<StyledField type='text' name='amount' placeholder='Cena (zł)' />
 						<Formik.ErrorMessage
 							name='amount'
 							render={msg => <StyledErrorMessage>{msg}</StyledErrorMessage>}
@@ -86,7 +86,7 @@ export default function Form({ setModalVisibility }) {
 					<StyledInputButton
 						className='create'
 						type='submit'
-						value='Create Expense'
+						value='Create'
 					/>
 				</StyledForm>
 			)}
@@ -98,22 +98,29 @@ const StyledForm = styled(Formik.Form)`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
-	min-height: 12rem; 
+	min-height: 15rem; 
 `;
 
 const StyledFieldsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-between;
 
 	min-height: 50%;
 `
 
 const StyledField = styled(Formik.Field)`
-	font-size: 1.5rem;
-	padding: 0 1rem 0.2rem 1rem;
-	border: none;
-	border-bottom: 1px solid gray;
+	margin-bottom: 1rem;
+	padding: 1rem 1rem 0.7rem 1rem;
+	
+	font-size: 1.25rem;
+	color: rgba(0, 0, 0, 0.9);
+
+	border: 0.5px solid green;
+	border-left: 6px solid rgba(78, 151, 243, 1);
+	border-radius: 4px;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
 `;
 
 const StyledErrorMessage = styled.div`
@@ -122,10 +129,18 @@ const StyledErrorMessage = styled.div`
 `;
 
 const StyledInputButton = styled.input`
-	margin: 0 auto;	
-	/* margin-top: 1.5rem; */
-	padding: 1rem;
-	width: 60%;
+	width: 40%;
+	align-self: flex-end;
+	/* margin: 0 auto; */
+	padding: 0.7rem;
+
+	background-color: rgba(78, 151, 243, 1);
+	box-shadow: 01px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+	border: 3px solid rgba(78, 151, 243, 1);
+	border-radius: 4px;
+
 	font-weight: bold;
-	font-size: 1rem;
+	font-size: 1.25rem;
+	color: white;
 `;

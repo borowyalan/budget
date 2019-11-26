@@ -6,7 +6,7 @@ const DisplaySumOfExpenses = () => {
 	const usersAmounts = useContext(UsersAmountsContext);
 
 	return (
-		<section style={{ height: "50px", padding: "1rem" }}>
+		<section style={{ height: "50px", paddingTop: "1rem" }}>
 			<div>
 				{usersAmounts[0].displayName}, {usersAmounts[0].userAmount}
 			</div>

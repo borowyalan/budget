@@ -24,7 +24,7 @@ export default function Modal({ children, setModalVisibility }) {
 					alignSelf: "flex-end",
 					justifySelf: "flexend",
 					flexDirection: "column",
-					padding: "0.6rem",
+					padding: "0.2rem 1.5rem 0.5rem 1.5rem",
 					margin: "5rem auto",
 					width: "80vw",
 					borderRadius: "0.3rem",
