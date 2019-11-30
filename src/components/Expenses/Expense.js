@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import propTypes from "prop-types";
 import { firestore } from "../../firebase";
 import { UserContext } from "../../providers/UserProvider";
 import DeleteExpense from "./DeleteExpense";
@@ -15,7 +14,6 @@ const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
 
 	return (
 		<StyledExpense displayName={displayName} offset={"50px"}>
-			{/* <ColoredBar /> */}
 			<Content>
 				<h3>{name}</h3>
 				<h4>{amount} zł</h4>
@@ -99,16 +97,6 @@ const Content = styled.section`
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-`;
-
-const ColoredBar = styled.div`
-	height: 100%;
-	width: 5px;
-	background-color: red;
-
-	position: relative;
-	top: 0;
-	left: 5px;
 `;
 
 export default Expense;

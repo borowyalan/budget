@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import "./App.scss";
 
-import firebase from "firebase";
 import Expenses from "./components/Expenses";
 import Login from "./components/Auth/Login";
 import { UserContext } from "./providers/UserProvider";
@@ -9,8 +8,6 @@ import { Switch, Route, Redirect } from "react-router-dom";
 
 function App() {
 	const { userData, userAuth } = useContext(UserContext);
-	console.log("data: ", userData);
-	console.log("auth: ", userAuth);
 
 	function PrivateRoute({ children, ...rest }) {
 		return (

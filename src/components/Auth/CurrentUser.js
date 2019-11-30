@@ -6,7 +6,7 @@ const CurrentUser = props => {
 	const handleSignOut = () => auth.signOut();
 
 	const user = useContext(UserContext);
-	const { displayName, email } = user;
+	const { displayName } = user;
 
 	return (
 		<section className='CurrentUser'>
