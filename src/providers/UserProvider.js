@@ -1,21 +1,20 @@
 import React, { useState, useEffect, createContext } from "react";
 import { auth, getUserDocument } from "../firebase";
-import { useHistory } from "react-router-dom";
 
 export const UserContext = createContext();
 
 export default function UserProvider(props) {
-	const [user, setUser] = useState("");
-	let history = useHistory();
+	const [userData, setUserData] = useState("");
+	const [userAuth, setUserAuth] = useState();
 
 	useEffect(() => {
 		let unsubscribeFromAuth = null;
 
 		(function subscribeToAuth() {
-			unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-				const user = await getUserDocument(userAuth);
-				setUser(user);
-				history.push("/");
+			unsubscribeFromAuth = auth.onAuthStateChanged( async userAuthStatus => {
+				setUserAuth(userAuthStatus)
+				const userData = await getUserDocument(userAuthStatus);
+				setUserData(userData);
 			});
 		})();
 
@@ -25,6 +24,6 @@ export default function UserProvider(props) {
 	}, []);
 
 	return (
-		<UserContext.Provider value={user}>{props.children}</UserContext.Provider>
+		<UserContext.Provider value={{userData, userAuth}}>{props.children}</UserContext.Provider>
 	);
 }

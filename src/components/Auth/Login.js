@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { auth, authInstance } from "../../firebase";
+import { useHistory } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCommentsDollar } from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +13,7 @@ export function Login() {
 		password: ""
 	});
 	const [loading, setLoading] = useState(false);
+	let history = useHistory();
 
 	const handleChange = event => {
 		let { name, value } = event.target;
@@ -31,6 +33,12 @@ export function Login() {
 			.setPersistence(authInstance.Auth.Persistence.LOCAL)
 			.then(() => {
 				return auth.signInWithEmailAndPassword(form.email, form.password);
+			})
+			.then(auth => {
+				console.log(auth);
+				if (auth) {
+					history.push("/");
+				}
 			})
 			.catch(function(error) {
 				var errorCode = error.code;

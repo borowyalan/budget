@@ -15,7 +15,6 @@ export default function UsersAmountsProvider(props) {
 				.collection("users")
 				.onSnapshot(snapshot => {
 					const usersAmounts = snapshot.docs.map(collectIdsAndDocs);
-					console.log(usersAmounts);
 					
 					setUsersAmounts(usersAmounts);
 				});
