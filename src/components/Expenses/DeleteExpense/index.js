@@ -10,23 +10,28 @@ export default function Index({ expenseRef }) {
 			{modalVisibility ? (
 				<Modal setModalVisibility={setModalVisibility}>
 					<h1>U sureeee biiitch?</h1>
-					<StyledButton onClick={() => expenseRef.delete()}>yes</StyledButton>
-					<StyledButton onClick={() => setModalVisibility(false)}>
+					<StyledModalButton onClick={() => expenseRef.delete()}>yes</StyledModalButton>
+					<StyledModalButton onClick={() => setModalVisibility(false)}>
 						no
-					</StyledButton>
+					</StyledModalButton>
 				</Modal>
 			) : (
-				<div onClick={() => setModalVisibility(true)}>Delete</div>
+				<StyledDeleteButton onClick={() => setModalVisibility(true)}>Delete</StyledDeleteButton>
 			)}
 		</div>
 	);
 }
 
-const StyledButton = styled.button`
+const StyledModalButton = styled.button`
 	width: 50%;
 	height: 50%;
 	padding: 0.2rem;
 	margin: 0.3rem;
 
 	font-size: 2rem;
+`;
+
+const StyledDeleteButton = styled.div`
+	font-size: 0.9rem;
+	color: #fe6074;
 `;
