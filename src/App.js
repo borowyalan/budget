@@ -39,11 +39,9 @@ function App() {
 					<>
 						<Route exact path='/login'>
 							<Login />
-							{/* 'no' */}
 						</Route>
 						<PrivateRoute exact path='/'>
 							{userData ? <Expenses user={userData} /> : ""}
-							d
 						</PrivateRoute>
 					</>
 				) : (
