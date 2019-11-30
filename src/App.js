@@ -17,7 +17,7 @@ function App() {
 			<Route
 				{...rest}
 				render={({ location }) =>
-					userAuth !== undefined ? (
+					userAuth ? (
 						children
 					) : (
 						<Redirect
@@ -35,14 +35,15 @@ function App() {
 	return (
 		<div className='App'>
 			<Switch>
-				{userAuth ? (
+				{userAuth !== undefined  ? (
 					<>
-						<Route path='/login'>
+						<Route exact path='/login'>
 							<Login />
 							{/* 'no' */}
 						</Route>
-						<PrivateRoute path='/'>
+						<PrivateRoute exact path='/'>
 							{userData ? <Expenses user={userData} /> : ""}
+							d
 						</PrivateRoute>
 					</>
 				) : (

@@ -31,8 +31,8 @@ export function Login() {
 
 		await auth
 			.setPersistence(authInstance.Auth.Persistence.LOCAL)
-			.then(() => {
-				return auth.signInWithEmailAndPassword(form.email, form.password);
+			.then(async () => {
+				return await auth.signInWithEmailAndPassword(form.email, form.password);
 			})
 			.then(auth => {
 				console.log(auth);
