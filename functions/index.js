@@ -1,3 +1,5 @@
+var round = require('lodash/round');
+
 var admin = require("firebase-admin");
 var functions = require("firebase-functions");
 
@@ -38,7 +40,9 @@ exports.subtractUserAmount = functions.firestore
 			return transaction.get(userRef).then(userDoc => {
 
 				var newUserAmount =
-					parseFloat(userDoc.data().userAmount) - parseFloat(expenseAmount);
+					round(parseFloat(userDoc.data().userAmount) - parseFloat(expenseAmount), 2);
+					console.log(newUserAmount);
+					
 
 				return transaction.update(userRef, {
 					userAmount: newUserAmount
