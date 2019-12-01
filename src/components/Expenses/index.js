@@ -10,15 +10,15 @@ const Index = ({ user }) => {
 	const expenses = useContext(ExpensesContext);
 
 	return (
-		<section>
+		<>
 			<DisplaySumOfExpenses userAmount={user.userAmount}></DisplaySumOfExpenses>
-			<div className='Expenses--container'>
+			<section className='Expenses--container'>
 				{expenses.map(expense => (
 					<Expense {...expense} currentUserUID={user.uid} key={expense.id} />
 				))}
-			</div>
+			</section>
 			<AddExpense />
-		</section>
+		</>
 	);
 };
 export default Index;

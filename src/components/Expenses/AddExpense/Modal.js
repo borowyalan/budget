@@ -24,10 +24,11 @@ export default function Modal({ children, setModalVisibility }) {
 					alignSelf: "flex-end",
 					justifySelf: "flexend",
 					flexDirection: "column",
-					padding: "0.2rem 1.5rem 0.5rem 1.5rem",
-					margin: "5rem auto",
+					// padding: "0.2rem 1.5rem 0.5rem 1.5rem",
+					padding: "1.5rem",
+					margin: "2rem auto",
 					width: "80vw",
-					borderRadius: "0.3rem",
+					borderRadius: "1.3rem",
 					border: "4px solid rgba(255,255,255,1)",
 					background: "#fff"
 				}

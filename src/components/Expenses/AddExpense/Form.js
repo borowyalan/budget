@@ -8,25 +8,28 @@ import * as Yup from "yup";
 import styled from "styled-components/macro";
 
 export default function Form({ setModalVisibility }) {
-	const currentUser = useContext(UserContext);
-	const { displayName, uid } = currentUser;
+	const { userData } = useContext(UserContext);
+	const { displayName, uid } = userData;
 
 	const handleSubmit = formValues => {
-		let { name, amount } = formValues;
+		let { name, amount, loan } = formValues;
 		amount = amount.replace(/,{1}/, ".");
 		amount = parseFloat(amount);
-
+		let isLoan = loan;
 		let timestamp = Date.now();
 
 		const expense = {
 			name,
 			amount,
+			isLoan,
 			displayName,
 			author: {
 				uid
 			},
 			timestamp
 		};
+		console.log(expense);
+
 		firestore.collection("budget").add(expense);
 	};
 
@@ -49,7 +52,8 @@ export default function Form({ setModalVisibility }) {
 		<Formik.Formik
 			initialValues={{
 				name: "",
-				amount: ""
+				amount: "",
+				loan: false
 			}}
 			validationSchema={validationSchema}
 			onSubmit={(values, { setSubmitting }) => {
@@ -59,9 +63,12 @@ export default function Form({ setModalVisibility }) {
 			}}
 		>
 			{formik => (
-				<StyledForm className='AddExpenset'>
+				<StyledForm className='AddExpense'>
 					<StyledFieldsContainer>
-						<label htmlFor='name' style={{ visibility: "hidden", height: "0px" }}>
+						<label
+							htmlFor='name'
+							style={{ visibility: "hidden", height: "0px" }}
+						>
 							Name of the task
 						</label>
 						<StyledField type='text' name='name' placeholder='Nazwa' />
@@ -69,7 +76,7 @@ export default function Form({ setModalVisibility }) {
 							name='name'
 							render={msg => <StyledErrorMessage>{msg}</StyledErrorMessage>}
 						/>
-	
+
 						<label
 							htmlFor='amount'
 							style={{ visibility: "hidden", height: "0px" }}
@@ -83,22 +90,62 @@ export default function Form({ setModalVisibility }) {
 						/>
 					</StyledFieldsContainer>
 
-					<StyledInputButton
-						className='create'
-						type='submit'
-						value='Create'
-					/>
+					<StyledInputWrapper>
+						<StyledCheckbox className='checkbox'>
+							<Formik.Field type='checkbox' name='loan' />
+							<p>Is it a loan?</p>
+						</StyledCheckbox>
+
+						<StyledInputButton
+							className='create'
+							type='submit'
+							value='Create'
+						/>
+					</StyledInputWrapper>
 				</StyledForm>
 			)}
 		</Formik.Formik>
 	);
 }
 
+const StyledCheckbox = styled.label`
+	width: 50%;
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	width: auto;
+	cursor: pointer;
+
+	input {
+		width: 25px;
+		height: 25px;
+		padding: 0.5rem;
+		margin-right: 10px;
+		appearance: none;
+		border: 2px solid rgba(78, 151, 243, 1);
+		border-radius: 2px;
+	}
+
+	input:checked {
+		border: 1px solid #41b883;
+		background-color: rgba(78, 151, 243, 1);
+	}
+
+	p {
+		display: inline-block;
+	}
+`;
+
+const StyledInputWrapper = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1.5rem;
+`;
+
 const StyledForm = styled(Formik.Form)`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
-	min-height: 15rem; 
+	justify-content: space-evenly;
 `;
 
 const StyledFieldsContainer = styled.div`
@@ -107,12 +154,12 @@ const StyledFieldsContainer = styled.div`
 	justify-content: space-between;
 
 	min-height: 50%;
-`
+`;
 
 const StyledField = styled(Formik.Field)`
-	margin-bottom: 1rem;
+	margin: 0.6rem 0.2rem 0 0;
 	padding: 1rem 1rem 0.7rem 1rem;
-	
+
 	font-size: 1.25rem;
 	color: rgba(0, 0, 0, 0.9);
 
@@ -135,7 +182,7 @@ const StyledInputButton = styled.input`
 	padding: 0.7rem;
 
 	background-color: rgba(78, 151, 243, 1);
-	box-shadow: 01px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	/* box-shadow: 01px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24); */
 
 	border: 3px solid rgba(78, 151, 243, 1);
 	border-radius: 4px;

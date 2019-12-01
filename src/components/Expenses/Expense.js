@@ -5,7 +5,15 @@ import DeleteExpense from "./DeleteExpense";
 
 import styled from "styled-components/macro";
 
-const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
+const Expense = ({
+	id,
+	name,
+	amount,
+	displayName,
+	timestamp,
+	author,
+	isLoan
+}) => {
 	const expenseRef = firestore.collection("budget").doc(`${id}`);
 	const { userData } = useContext(UserContext);
 
@@ -13,7 +21,7 @@ const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
 		<StyledExpense author={author} userData={userData} offset={"50px"}>
 			<Content>
 				<h3>{name}</h3>
-				<h4>{amount} zł</h4>
+				<h4>{amount} zł {isLoan ? '(L)' : ''}</h4>
 				{userData.uid === author.uid ? (
 					<div>
 						<DeleteExpense expenseRef={expenseRef} />
