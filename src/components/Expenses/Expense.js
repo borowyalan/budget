@@ -10,7 +10,7 @@ const Expense = ({ id, name, amount, displayName, timestamp, author }) => {
 	const { userData } = useContext(UserContext);
 
 	return (
-		<StyledExpense displayName={displayName} offset={"50px"}>
+		<StyledExpense author={author} userData={userData} offset={"50px"}>
 			<Content>
 				<h3>{name}</h3>
 				<h4>{amount} zł</h4>
@@ -32,37 +32,24 @@ const StyledExpense = styled.article`
 
 	padding: 0.5rem 0;
 	margin: ${props =>
-		props.displayName === "Alan"
+		props.author.uid === props.userData.uid
 			? `0.2rem 0 1rem ${props.offset}`
 			: `0.2rem 0 1rem -${props.offset}`};
 
-	background-color: ${props =>
-		props.displayName === "Alan"
-			? `rgba(255,255,255,1)`
-			: `rgba(255,255,255,1)`};
-
-	/* border: ${props =>
-		props.displayName === "Alan"
-			? `1px solid rgba(10,93,238,0.34)`
-			: `1px solid rgba(210,93,86,0.45)`}; */
-
-	box-shadow: ${props =>
-		props.displayName === "Alan"
-			? `0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);`
-			: `0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)`};
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 
 	border-radius: 6px;
 	box-shadow: h3 {
 		text-transform: capitalize;
 	}
-	
-	font-family: 'Roboto', sans-serif;
+
+	font-family: "Roboto", sans-serif;
 
 	h3 {
 		font-size: 1.25rem;
 		font-weight: 500;
 		margin: 10px 0 0 0;
-	} 
+	}
 
 	h4 {
 		font-size: 0.875rem;
@@ -73,17 +60,18 @@ const StyledExpense = styled.article`
 	&:before {
 		position: absolute;
 		top: -1%;
-		left: ${props => (props.displayName === "Alan" ? `calc(100% - 20px)` : `10px`)};
+		left: ${props =>
+			props.author.uid === props.userData.uid ? `calc(100% - 20px)` : `10px`};
 
-		content: '';
+		content: "";
 		height: 102%;
 		width: 10px;
 
 		background-color: ${props =>
-			props.displayName === "Alan"
+			props.author.uid === props.userData.uid
 				? `rgba(59,173,250,1)`
 				: `rgba(243,78,107,1)`};
-			
+
 		border-radius: 2px;
 		border-top-right-radius: 2px;
 		border-bottom-right-radius: 2px;
