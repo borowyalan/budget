@@ -13,7 +13,7 @@ export default function Form({ setModalVisibility }) {
 
 	const handleSubmit = formValues => {
 		let { name, amount, loan } = formValues;
-		amount = amount.replace(/,{1}/, ".");
+		amount = amount * 100;
 		amount = parseFloat(amount);
 		let isLoan = loan;
 		let timestamp = Date.now();
