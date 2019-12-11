@@ -1,25 +1,39 @@
 import React, { useContext } from "react";
-import { UsersAmountsContext } from "../../providers/UsersAmountsProvider";
 import styled from "styled-components/macro";
-import _round from 'lodash/round'
+import { ExpensesContext } from "../../providers/ExpensesProvider";
 
 const DisplaySumOfExpenses = () => {
-	const usersObjects = useContext(UsersAmountsContext);
+	const expenses = useContext(ExpensesContext);
+
+	let KarolExpenses = expenses
+		.filter(expense => expense.displayName === "Karol")
+		.reduce((acc, currentValue) => {
+			return acc + currentValue.amount;
+		}, 0);
+
+	let AlanExpenses = expenses
+		.filter(expense => expense.displayName === "Alan")
+		.reduce((acc, currentValue) => {
+			return acc + currentValue.amount;
+		}, 0);
 
 	//sort descending by userAmount
-	const sortedUsers = usersObjects.sort((a, b) => b.userAmount - a.userAmount);
+	const sortedUsers = [
+		{ name: "Alan", amount: AlanExpenses },
+		{ name: "Karol", amount: KarolExpenses }
+	].sort((a, b) => b.userAmount - a.userAmount);
 
 	return (
 		<BalanceSection>
 			<div>
-				{sortedUsers[0].displayName}: {sortedUsers[0].userAmount}
+				{sortedUsers[0].name}: {sortedUsers[0].amount / 100}
 			</div>
 			<div>
-				{sortedUsers[1].displayName}: {sortedUsers[1].userAmount}
+				{sortedUsers[1].name}: {sortedUsers[1].amount / 100}
 			</div>
-			<Divider/>
+			<Divider />
 			<div>
-				Balance: {_round(sortedUsers[0].userAmount - sortedUsers[1].userAmount, 2)}
+				Balance: {(sortedUsers[0].amount - sortedUsers[1].amount) / 100}
 			</div>
 		</BalanceSection>
 	);
@@ -37,6 +51,6 @@ const BalanceSection = styled.section`
 
 const Divider = styled.hr`
 	width: 100%;
-`
+`;
 
 export default DisplaySumOfExpenses;
