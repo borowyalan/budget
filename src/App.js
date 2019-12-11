@@ -3,6 +3,7 @@ import "./App.scss";
 
 import Expenses from "./components/Expenses";
 import Login from "./components/Auth/Login";
+import SettingsPage from "./components/SettingsPage";
 import { UserContext } from "./providers/UserProvider";
 import { Switch, Route, Redirect, Link } from "react-router-dom";
 
@@ -37,6 +38,7 @@ function App() {
 						<Route exact path='/login'>
 							<Login />
 						</Route>
+
 						<PrivateRoute exact path='/settings'>
 							<Link
 								style={{
@@ -50,10 +52,9 @@ function App() {
 								{" "}
 								{`<=`}{" "}
 							</Link>
-							<div style={{ margin: "auto auto" }}>
-								Come here soon <br /> (∩◉ω◉ )⊃----★
-							</div>
+							<SettingsPage />
 						</PrivateRoute>
+
 						<PrivateRoute exact path='/'>
 							<Link
 								style={{
