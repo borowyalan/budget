@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { firestore } from "../../firebase";
 import { UserContext } from "../../providers/UserProvider";
 import DeleteExpense from "./DeleteExpense";
+import CurrencyFormat from "react-currency-format";
 
 import styled from "styled-components/macro";
 
@@ -21,7 +22,12 @@ const Expense = ({
 		<StyledExpense author={author} userData={userData} offset={"50px"}>
 			<Content>
 				<h3>{name}</h3>
-				<h4>{amount} zł {isLoan ? '(L)' : ''}</h4>
+				<StyledAmount
+					value={amount / 100}
+					displayType={"text"}
+					thousandSeparator={true}
+					suffix={` zł ${isLoan ? "(L)" : ""}`}
+				/>
 				{userData.uid === author.uid ? (
 					<div>
 						<DeleteExpense expenseRef={expenseRef} />
@@ -90,6 +96,12 @@ const Content = styled.section`
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+`;
+
+const StyledAmount = styled(CurrencyFormat)`
+	font-size: 0.875rem;
+	font-weight: 400;
+	margin: 5px 0;
 `;
 
 export default Expense;
