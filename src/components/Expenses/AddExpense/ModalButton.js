@@ -22,9 +22,17 @@ const StyledPopupContainer = styled.div`
 	height: 10vh;
 	width: 10vh;
 
-	border: solid 0.1px black;
 	border-radius: 2.5rem;
-	background-color: white;
+	background: rgb(59, 173, 250);
+	background: rgb(243, 78, 107);
+	background: rgb(243, 78, 107);
+	background: linear-gradient(
+		135deg,
+		/* red */ rgba(243, 78, 107, 0.4) -5%,
+		/* blue */ rgba(59, 173, 250, 0.4) 110%
+	);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+
 	font-size: 3rem;
 `;
 
