@@ -90,6 +90,11 @@ const StyledExpense = styled.article`
 		border-top-right-radius: 2px;
 		border-bottom-right-radius: 2px;
 	}
+
+	@media only screen and (min-width: 1224px){
+		width: 35vw;
+	}
+
 `;
 
 const Content = styled.section`
