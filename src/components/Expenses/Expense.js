@@ -72,12 +72,12 @@ const StyledExpense = styled.article`
 	}
 
 	&:before {
+		content: "";
 		position: absolute;
 		top: -1%;
-		left: ${props =>
-			props.author.uid === props.userData.uid ? `calc(100% - 20px)` : `10px`};
+		${props =>
+			props.author.uid === props.userData.uid ? `right: 10px` : `left: 10px`};
 
-		content: "";
 		height: 102%;
 		width: 10px;
 
@@ -91,10 +91,9 @@ const StyledExpense = styled.article`
 		border-bottom-right-radius: 2px;
 	}
 
-	@media only screen and (min-width: 1224px){
+	@media only screen and (min-width: 1224px) {
 		width: 35vw;
 	}
-
 `;
 
 const Content = styled.section`
