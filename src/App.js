@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./App.scss";
+import styled from "styled-components/macro";
 
 import Expenses from "./components/Expenses";
 import Login from "./components/Auth/Login";
@@ -31,7 +31,7 @@ function App() {
 	}
 
 	return (
-		<div className='App'>
+		<StyledAppContainer>
 			<Switch>
 				{userAuth !== undefined ? (
 					<>
@@ -74,8 +74,22 @@ function App() {
 					""
 				)}
 			</Switch>
-		</div>
+		</StyledAppContainer>
 	);
 }
 
 export default App;
+
+const StyledAppContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+
+	min-height: 100vh;
+
+	// background-image: url("./assets/background.png");
+	background-color: rgb(240, 240, 240);
+	background-size: 65%;
+	background-repeat: repeat;
+`;
