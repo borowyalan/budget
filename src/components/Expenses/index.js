@@ -5,8 +5,7 @@ import DisplaySumOfExpenses from "./DisplaySumOfExpenses";
 import { ExpensesContext } from "../../providers/ExpensesProvider";
 import DateHeader from "./DateHeader";
 import { getFormattedDate } from "../../util";
-
-import "./Expenses.scss";
+import styled from "styled-components/macro";
 
 const Index = ({ user }) => {
 	const expenses = useContext(ExpensesContext);
@@ -15,7 +14,7 @@ const Index = ({ user }) => {
 	return (
 		<>
 			<DisplaySumOfExpenses userAmount={user.userAmount}></DisplaySumOfExpenses>
-			<section className='Expenses--container'>
+			<StyledExpenseContainer>
 				{expenses.map(expense => {
 					const formattedDate = getFormattedDate(expense.timestamp);
 					let isHeaderDisplayed = lastDate !== formattedDate;
@@ -34,9 +33,17 @@ const Index = ({ user }) => {
 						</>
 					);
 				})}
-			</section>
+			</StyledExpenseContainer>
 			<AddExpense />
 		</>
 	);
 };
 export default Index;
+
+const StyledExpenseContainer = styled.section`
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+
+	margin-top: 1rem;
+`;
