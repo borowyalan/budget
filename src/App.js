@@ -40,33 +40,12 @@ function App() {
 						</Route>
 
 						<PrivateRoute exact path='/settings'>
-							<Link
-								style={{
-									position: "absolute",
-									left: "30px",
-									top: "25px",
-									fontSize: "1.5rem"
-								}}
-								to='/'
-							>
-								{" "}
-								{`<=`}{" "}
-							</Link>
+							<StyledLink to='/'> {`<=`} </StyledLink>
 							<SettingsPage />
 						</PrivateRoute>
 
 						<PrivateRoute exact path='/'>
-							<Link
-								style={{
-									position: "absolute",
-									right: "30px",
-									top: "25px",
-									fontSize: "1.5rem"
-								}}
-								to='/settings'
-							>
-								{"=>"}
-							</Link>
+							<StyledLink to='/settings'>{"=>"}</StyledLink>
 							{userData ? <Expenses user={userData} /> : ""}
 						</PrivateRoute>
 					</>
@@ -88,8 +67,15 @@ const StyledAppContainer = styled.div`
 
 	min-height: 100vh;
 
-	// background-image: url("./assets/background.png");
+	background-image: url("./assets/background.png");
 	background-color: rgb(240, 240, 240);
 	background-size: 65%;
 	background-repeat: repeat;
+`;
+
+const StyledLink = styled(Link)`
+	position: absolute;
+	${props => (props.to === "/" ? "left: 30px" : "right: 30px")};
+	top: 25px;
+	font-size: 1.5rem;
 `;
