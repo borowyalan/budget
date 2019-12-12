@@ -5,30 +5,11 @@ import Expenses from "./components/Expenses";
 import Login from "./components/Auth/Login";
 import SettingsPage from "./components/SettingsPage";
 import { UserContext } from "./providers/UserProvider";
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
 	const { userData, userAuth } = useContext(UserContext);
-
-	function PrivateRoute({ children, ...rest }) {
-		return (
-			<Route
-				{...rest}
-				render={({ location }) =>
-					userAuth ? (
-						children
-					) : (
-						<Redirect
-							to={{
-								pathname: "/login",
-								state: { from: location }
-							}}
-						/>
-					)
-				}
-			/>
-		);
-	}
 
 	return (
 		<StyledAppContainer>
