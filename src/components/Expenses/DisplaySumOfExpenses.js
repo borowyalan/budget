@@ -6,15 +6,21 @@ const DisplaySumOfExpenses = () => {
 	const expenses = useContext(ExpensesContext);
 
 	let KarolExpenses = expenses
-		.filter(expense => expense.displayName === "Karol")
+		.filter(expense => {
+			return expense.displayName === "Karol"
+		})
 		.reduce((acc, currentValue) => {
-			return acc + currentValue.amount;
+			return currentValue.isLoan 
+				? acc + currentValue.amount * 2 
+				: acc + currentValue.amount;
 		}, 0);
 
 	let AlanExpenses = expenses
 		.filter(expense => expense.displayName === "Alan")
 		.reduce((acc, currentValue) => {
-			return acc + currentValue.amount;
+			return currentValue.isLoan 
+				? acc + currentValue.amount * 2 
+				: acc + currentValue.amount;
 		}, 0);
 
 	//sort descending by userAmount
